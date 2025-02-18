@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: 24 39 94; /* #18275e */
+  --color-secondary: 29 214 142; /* #1dd68e */
+  --color-tertiary: 51 68 148; /* #334494 */
+}
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900;
+  }
+}
+
+@layer components {
+  .title-decoration {
+    @apply relative inline-block;
+  }
+  .title-decoration::after {
+    content: "";
+    @apply absolute bottom-0 left-0 w-1/2 h-1 bg-secondary;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
