@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
-import { FaFilePdf } from "react-icons/fa6";
+import AnimationIcons from "../components/AnimationIcons";
 
 // Datos de los boletines con archivos PDF
 const boletinesData = [
@@ -22,7 +22,7 @@ const BoletinesPage = () => {
             key={boletin.id}
             className="bg-white rounded-xl shadow-lg p-8 border border-gray-200 text-center flex flex-col items-center"
           >
-            <FaFilePdf className="text-5xl text-secondary mb-4" />
+            <AnimationIcons type="pdf" />
             <h2 className="text-xl font-semibold">{boletin.titulo}</h2>
             <p className="text-gray-600 mb-4">Fecha de publicación: {boletin.fecha}</p>
             <button
