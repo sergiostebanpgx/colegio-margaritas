@@ -31,13 +31,13 @@ const Carousel = () => {
   }, [nextSlide]);
 
   return (
-    <div className="max-w-4xl mx-auto my-8 relative rounded-2xl shadow-2xl overflow-hidden"
+    <div className="max-w-7xl mx-auto my-8 relative rounded-2xl shadow-2xl overflow-hidden"
          onMouseEnter={() => setIsHovered(true)}
          onMouseLeave={() => setIsHovered(false)}>
       <div className="flex transition-transform duration-700 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
         {images.map((src, index) => (
-          <div key={index} className="w-full flex-shrink-0 h-[500px] relative">
+          <div key={index} className="w-full flex-shrink-0 h-[600px] relative">
             <Image
               src={src}
               alt={`Slide ${index + 1}`}
