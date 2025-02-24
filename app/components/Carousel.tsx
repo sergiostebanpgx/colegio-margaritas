@@ -41,9 +41,8 @@ const Carousel = () => {
             <Image
               src={src}
               alt={`Slide ${index + 1}`}
-              layout="fill"
-              objectFit="cover"
-              className="w-full h-full transition-transform duration-300 hover:scale-105"
+              fill
+              className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
             />
           </div>
         ))}

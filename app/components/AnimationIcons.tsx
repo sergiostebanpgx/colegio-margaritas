@@ -1,7 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Lottie from "lottie-react";
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+
+// Cargar Lottie solo en el cliente
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 interface AnimationIconsProps {
   type:
@@ -12,60 +15,43 @@ interface AnimationIconsProps {
     | "location"
     | "blog"
     | "search"
-    | "newspaper"; // Asegurar que `type` es uno de estos valores
+    | "newspaper";
   size?: number;
 }
 
-const AnimationIcons: React.FC<AnimationIconsProps> = ({
-  type,
-  size = 100,
-}) => {
+const AnimationIcons: React.FC<AnimationIconsProps> = ({ type, size = 100 }) => {
   const [animationData, setAnimationData] = useState<any>(null);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    let animationFile = "";
-    switch (type) {
-      case "mail":
-        animationFile = "/animations/mail.json";
-        break;
-      case "register":
-        animationFile = "/animations/Register.json";
-        break;
-      case "pdf":
-        animationFile = "/animations/pdf.json";
-        break;
-      case "call":
-        animationFile = "/animations/call.json";
-        break;
-      case "location":
-        animationFile = "/animations/location.json";
-        break;
-      case "blog":
-        animationFile = "/animations/blog.json";
-        break;
-      case "search":
-        animationFile = "/animations/search.json";
-        break;
-      case "newspaper":
-        animationFile = "/animations/newspaper.json";
-        break;
-    }
+    if (typeof window === "undefined") return; // Evita SSR
 
-    fetch(animationFile)
-      .then((res) => res.json())
-      .then((data) => setAnimationData(data))
-      .catch((err) => console.error(`Error al cargar ${type}.json`, err));
+    setIsMounted(true);
+
+    const animations: Record<string, string> = {
+      mail: "/animations/mail.json",
+      register: "/animations/Register.json",
+      pdf: "/animations/pdf.json",
+      call: "/animations/call.json",
+      location: "/animations/location.json",
+      blog: "/animations/blog.json",
+      search: "/animations/search.json",
+      newspaper: "/animations/newspaper.json",
+    };
+
+    const animationFile = animations[type] || "";
+
+    if (animationFile) {
+      fetch(animationFile)
+        .then((res) => res.json())
+        .then((data) => setAnimationData(data))
+        .catch((err) => console.error(`Error al cargar ${type}.json`, err));
+    }
   }, [type]);
 
-  if (!animationData) return <p>Cargando...</p>;
+  if (!isMounted || !animationData) return null;
 
-  return (
-    <Lottie
-      animationData={animationData}
-      loop={true}
-      style={{ width: size, height: size }}
-    />
-  );
+  return <Lottie animationData={animationData} loop={true} style={{ width: size, height: size }} />;
 };
 
 export default AnimationIcons;
