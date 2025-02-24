@@ -37,12 +37,10 @@ const Footer = () => {
 
             <div className="space-y-3">
               <div className="flex items-center gap-x-3 group hover:translate-x-2 transition-transform duration-300">
-                <AnimationIcons type="call" size={24} />
                 <p className="text-gray-300 text-sm md:text-base">(601) 743-9658</p>
               </div>
 
               <div className="flex items-center gap-x-3 group hover:translate-x-2 transition-transform duration-300">
-                <AnimationIcons type="mail" size={24} />
                 <Link
                   href="mailto:collasmargaritas8@educacionbogobta.edu.co"
                   className="text-gray-300 hover:text-secondary transition-colors text-sm md:text-base break-all md:break-normal"
@@ -52,7 +50,6 @@ const Footer = () => {
               </div>
 
               <div className="flex items-center gap-x-3 group hover:translate-x-2 transition-transform duration-300">
-                <AnimationIcons type="location" size={24}/>
                 <p className="text-gray-300 text-sm md:text-base">Carrera 88C # 43-53 Sur, Bogotá, Colombia</p>
               </div>
             </div>
