@@ -11,101 +11,86 @@ import AnimationIcons from "../components/AnimationIcons";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-white py-8">
+    <footer className="bg-primary text-white py-4 relative overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Logo y descripción */}
-          <div className="w-full md:w-1/3 text-center md:text-left">
+          <div className="space-y-4 transform hover:scale-105 transition-transform duration-300">
             <Image
               src="/logo-blanco.webp"
               alt="Colegio Las Margaritas"
-              width={200}
-              height={40}
+              width={180}
+              height={36}
               className="mx-auto md:mx-0"
             />
-            <p className="text-sm text-gray-300 mt-3 max-w-xs mx-auto md:mx-0">
-              “Comprometidos con la excelencia construimos una sociedad en paz,
-              equitativa e incluyente retando los desafíos del futuro”
+            <p className="text-sm text-gray-300 max-w-xs leading-relaxed">
+              "Comprometidos con la excelencia construimos una sociedad en paz,
+              equitativa e incluyente retando los desafíos del futuro"
             </p>
           </div>
 
           {/* Información de Contacto */}
-          <div className="w-full md:w-1/3 text-center md:text-left">
-            <h3 className="text-lg font-semibold mb-3">Contacto</h3>
+          <div className="space-y-4">
+            <h3 className="text-lg font-bold mb-4 relative inline-block after:content-[''] after:absolute after:w-1/2 after:h-0.5 after:bg-secondary after:bottom-0 after:left-0">
+              Contacto
+            </h3>
 
-            <div className="flex justify-center md:justify-start items-center gap-x-2 text-gray-300">
-              <AnimationIcons type="call" size={30} />
-              <p>(601) 743-9658</p>
-            </div>
+            <div className="space-y-3">
+              <div className="flex items-center gap-x-3 group hover:translate-x-2 transition-transform duration-300">
+                <AnimationIcons type="call" size={24} />
+                <p className="text-gray-300 text-sm md:text-base">(601) 743-9658</p>
+              </div>
 
-            <div className="flex justify-center md:justify-start items-center gap-x-2 text-gray-300 mt-2">
-              <AnimationIcons type="mail" size={30} />
-              <Link
-                href="mailto:collasmargaritas8@educacionbogobta.edu.co"
-                className="hover:text-secondary transition-colors"
-              >
-                collasmargaritas8@educacionbogota.edu.co
-              </Link>
-            </div>
+              <div className="flex items-center gap-x-3 group hover:translate-x-2 transition-transform duration-300">
+                <AnimationIcons type="mail" size={24} />
+                <Link
+                  href="mailto:collasmargaritas8@educacionbogobta.edu.co"
+                  className="text-gray-300 hover:text-secondary transition-colors text-sm md:text-base break-all md:break-normal"
+                >
+                  collasmargaritas8@educacionbogota.edu.co
+                </Link>
+              </div>
 
-            <div className="flex justify-center md:justify-start items-center gap-x-2 text-gray-300 mt-2">
-              <AnimationIcons type="location" size={30} />
-              <p>Carrera 88C # 43-53 Sur, Bogotá, Colombia</p>
+              <div className="flex items-center gap-x-3 group hover:translate-x-2 transition-transform duration-300">
+                <AnimationIcons type="location" size={24}/>
+                <p className="text-gray-300 text-sm md:text-base">Carrera 88C # 43-53 Sur, Bogotá, Colombia</p>
+              </div>
             </div>
           </div>
 
           {/* Redes Sociales */}
-          <div className="w-full md:w-1/3 text-center md:text-left">
-            <h3 className="text-lg font-semibold mb-3">Síguenos</h3>
-            <div className="flex justify-center md:justify-start space-x-5">
-              <Link
-                href="https://www.facebook.com/AlianzaEducativaOficial/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-secondary transition-colors"
-              >
-                <FaFacebook size={28} />
-              </Link>
-              <Link
-                href="https://x.com/AAE_Colombia"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-secondary transition-colors"
-              >
-                <FaXTwitter size={28} />
-              </Link>
-              <Link
-                href="https://www.instagram.com/alianzaeducativa/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-secondary transition-colors"
-              >
-                <FaInstagram size={28} />
-              </Link>
-              <Link
-                href="https://www.youtube.com/channel/UCTCwDZTeiKAo6gIUC-Ng1Og?view_as=subscriber"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-secondary transition-colors"
-              >
-                <FaYoutube size={28} />
-              </Link>
-              <Link
-                href="https://co.linkedin.com/company/alianzaeducativacolombia"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-secondary transition-colors"
-              >
-                <FaLinkedinIn size={28} />
-              </Link>
+          <div className="space-y-4">
+            <h3 className="text-lg font-bold mb-4 relative inline-block after:content-[''] after:absolute after:w-1/2 after:h-0.5 after:bg-secondary after:bottom-0 after:left-0">
+              Síguenos
+            </h3>
+            <div className="flex justify-center md:justify-start gap-6">
+              {[
+                { Icon: FaFacebook, href: "https://www.facebook.com/AlianzaEducativaOficial/" },
+                { Icon: FaXTwitter, href: "https://x.com/AAE_Colombia" },
+                { Icon: FaInstagram, href: "https://www.instagram.com/alianzaeducativa/" },
+                { Icon: FaYoutube, href: "https://www.youtube.com/channel/UCTCwDZTeiKAo6gIUC-Ng1Og" },
+                { Icon: FaLinkedinIn, href: "https://co.linkedin.com/company/alianzaeducativacolombia" },
+              ].map(({ Icon, href }, index) => (
+                <Link
+                  key={index}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-secondary transform hover:scale-125 transition-all duration-300"
+                >
+                  <Icon size={28} />
+                </Link>
+              ))}
             </div>
           </div>
         </div>
 
         {/* Línea de separación y derechos reservados */}
-        <div className="border-t-2 border-green-500 mt-8 pt-4 text-center text-gray-400 text-sm">
-          &copy; {new Date().getFullYear()} Colegio Las Margaritas. Todos los
-          derechos reservados.
+        <div className="border-t border-green-500/30 pt-4 text-center text-gray-400 text-sm">
+          <p className="hover:text-secondary transition-colors">
+            &copy; {new Date().getFullYear()} Colegio Las Margaritas. Todos los
+            derechos reservados.
+          </p>
         </div>
       </div>
     </footer>

@@ -4,6 +4,7 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 import WhatsAppButton from "./components/WhatsAppButton"
 import type React from "react" // Import React
+import PageTransition from "./components/PageTransition"
 
 const poppins = Poppins({
   weight: ["400", "600", "700"],
@@ -25,7 +26,11 @@ export default function RootLayout({
     <html lang="es" className={poppins.className}>
       <body className="flex flex-col min-h-screen">
         <Header />
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow">
+          <PageTransition>
+            {children}
+          </PageTransition>
+        </main>
         <Footer />
         <WhatsAppButton />
       </body>

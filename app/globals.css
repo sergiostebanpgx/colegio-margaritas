@@ -30,3 +30,27 @@
   }
 }
 
+.calendar-custom {
+  --fc-border-color: theme("colors.gray.200");
+  --fc-button-bg-color: rgb(var(--color-primary));
+  --fc-button-border-color: rgb(var(--color-primary));
+  --fc-button-hover-bg-color: rgb(var(--color-primary) / 0.9);
+  --fc-button-hover-border-color: rgb(var(--color-primary) / 0.9);
+  --fc-today-bg-color: rgb(var(--color-primary) / 0.1);
+}
+
+.fc .fc-button {
+  @apply rounded-lg text-sm font-medium transition-colors duration-200;
+}
+
+.fc .fc-toolbar-title {
+  @apply text-xl md:text-2xl font-bold text-gray-800;
+}
+
+.fc th {
+  @apply py-3 text-gray-600 font-semibold;
+}
+
+.fc td {
+  @apply border-gray-200;
+}

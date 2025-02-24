@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import AnimatedTitle from "@/components/ui/AnimatedTitle";
 
 const noticias = [
   {
@@ -34,29 +35,49 @@ const noticias = [
 const NoticiasPage = () => {
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-8 title-decoration text-center">
-        Noticias
-      </h1>
+      <AnimatedTitle>Últimas Noticias</AnimatedTitle>
+     
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {noticias.map((noticia) => (
           <div
             key={noticia.id}
-            className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 transition-all hover:shadow-xl"
+            className="group bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
           >
-            <Image
-              src={noticia.imagen}
-              alt={noticia.titulo}
-              width={500}
-              height={300}
-              className="w-full h-56 object-cover transition-transform duration-300 hover:scale-105"
-            />
-            <div className="p-6">
-              <h2 className="text-xl font-semibold mb-2">{noticia.titulo}</h2>
-              <p className="text-gray-600 mb-4">{noticia.descripcion}</p>
-              <Link href={`/noticias/${noticia.id}`}>
-                <span className="text-white bg-secondary px-4 py-2 rounded-full hover:bg-tertiary transition-all duration-300">
-                  Leer más
-                </span>
+            <div className="relative overflow-hidden">
+              <Image
+                src={noticia.imagen}
+                alt={noticia.titulo}
+                width={500}
+                height={300}
+                className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+            <div className="p-8">
+              <h2 className="text-2xl font-bold mb-3 text-gray-800 group-hover:text-primary transition-colors">
+                {noticia.titulo}
+              </h2>
+              <p className="text-gray-600 mb-6 line-clamp-3">
+                {noticia.descripcion}
+              </p>
+              <Link 
+                href={`/noticias/${noticia.id}`}
+                className="inline-flex items-center gap-2 text-white bg-primary px-6 py-3 rounded-full hover:bg-secondary transition-all duration-300 transform group-hover:scale-105"
+              >
+                <span>Leer más</span>
+                <svg 
+                  className="w-4 h-4 transition-transform group-hover:translate-x-1" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
               </Link>
             </div>
           </div>

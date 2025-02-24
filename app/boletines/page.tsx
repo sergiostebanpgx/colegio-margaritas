@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import AnimationIcons from "../components/AnimationIcons";
+import AnimatedTitle from "@/components/ui/AnimatedTitle";
 
 // Datos de los boletines con archivos PDF
 const boletinesData = [
@@ -15,7 +16,7 @@ const BoletinesPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-8 title-decoration text-center">Boletines Informativos</h1>
+      <AnimatedTitle>Boletines Informativos</AnimatedTitle>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {boletinesData.map((boletin) => (
           <div
@@ -37,22 +38,24 @@ const BoletinesPage = () => {
 
       {/* Modal para ver el PDF */}
       {selectedBoletin && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-3xl w-full">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">{selectedBoletin?.titulo || "Cargando..."}</h2>
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-2xl max-w-6xl w-full h-[90vh] flex flex-col">
+            <div className="flex justify-between items-center p-4 border-b">
+              <h2 className="text-2xl font-bold">{selectedBoletin?.titulo || "Cargando..."}</h2>
               <button
                 onClick={() => setSelectedBoletin(null)}
-                className="text-gray-500 hover:text-gray-800"
+                className="text-gray-500 hover:text-gray-800 p-2 hover:bg-gray-100 rounded-full transition-colors"
               >
                 <FaTimes size={24} />
               </button>
             </div>
-            <iframe
-              src={selectedBoletin?.archivo || ""}
-              className="w-full h-[500px] rounded-lg border"
-              title={selectedBoletin?.titulo || "Boletín"}
-            ></iframe>
+            <div className="flex-1 p-4">
+              <iframe
+                src={selectedBoletin?.archivo || ""}
+                className="w-full h-full rounded-lg border-2 border-gray-200"
+                title={selectedBoletin?.titulo || "Boletín"}
+              ></iframe>
+            </div>
           </div>
         </div>
       )}

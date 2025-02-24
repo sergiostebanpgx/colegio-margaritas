@@ -13,7 +13,7 @@ interface AnimationIconsProps {
     | "blog"
     | "search"
     | "newspaper"; // Asegurar que `type` es uno de estos valores
-  size?: number; // Asegurar que `size` es un número
+  size?: number;
 }
 
 const AnimationIcons: React.FC<AnimationIconsProps> = ({

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 // Datos de las noticias (deberían obtenerse de una API en un proyecto real)
 const noticias = [
@@ -33,18 +34,60 @@ const NoticiaPage = ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 p-6">
-        <Image
-          src={noticia.imagen}
-          alt={noticia.titulo}
-          width={900}
-          height={600}
-          className="w-full h-auto rounded-lg"
-        />
-        <h1 className="text-3xl font-bold mt-6 mb-4">{noticia.titulo}</h1>
-        <p className="text-gray-600 text-lg">{noticia.descripcion}</p>
-        <div className="mt-6 border-t pt-4 text-gray-800 text-lg leading-relaxed">
-          {noticia.contenido}
+      <div className="max-w-4xl mx-auto">
+        <div className="relative h-[400px] md:h-[500px] mb-8 rounded-2xl overflow-hidden">
+          <Image
+            src={noticia.imagen}
+            alt={noticia.titulo}
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+              {noticia.titulo}
+            </h1>
+            <p className="text-lg md:text-xl text-gray-100">
+              {noticia.descripcion}
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
+          <div className="prose prose-lg max-w-none">
+            <div className="text-gray-700 leading-relaxed space-y-6">
+              {noticia.contenido.split('.').map((parrafo, index) => (
+                parrafo.trim() && (
+                  <p key={index} className="text-lg">
+                    {parrafo.trim()}.
+                  </p>
+                )
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-12 pt-6 border-t border-gray-100">
+            <Link 
+              href="/noticias"
+              className="inline-flex items-center gap-2 text-white bg-primary px-6 py-3 rounded-full hover:bg-secondary transition-all duration-300"
+            >
+              <svg 
+                className="w-4 h-4 rotate-180" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+              <span>Volver a Noticias</span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
