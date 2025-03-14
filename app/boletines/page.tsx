@@ -9,6 +9,7 @@ import AnimatedTitle from "@/components/ui/AnimatedTitle";
 const boletinesData = [
   { id: 1, titulo: "Boletín Enero 2025", fecha: "01/01/2025", archivo: "/pdf/boletin_202501.pdf" },
   { id: 2, titulo: "Boletín Febrero 2025", fecha: "01/02/2025", archivo: "/pdf/boletin_202502.pdf" },
+  { id: 3, titulo: "Boletín Marzo 2025", fecha: "01/03/2025", archivo: "/pdf/boletin_202503.pdf" }
 ];
 
 const BoletinesPage = () => {
