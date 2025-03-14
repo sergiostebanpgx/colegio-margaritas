@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import dynamic from "next/dynamic";
 
 // Cargar Lottie solo en el cliente
@@ -22,6 +22,7 @@ interface AnimationIconsProps {
 const AnimationIcons: React.FC<AnimationIconsProps> = ({ type, size = 100 }) => {
   const [animationData, setAnimationData] = useState<any>(null);
   const [isMounted, setIsMounted] = useState(false);
+  const lottieRef = useRef<any>(null); // Referencia para controlar la animación
 
   useEffect(() => {
     if (typeof window === "undefined") return; // Evita SSR
@@ -51,7 +52,22 @@ const AnimationIcons: React.FC<AnimationIconsProps> = ({ type, size = 100 }) => 
 
   if (!isMounted || !animationData) return null;
 
-  return <Lottie animationData={animationData} loop={true} style={{ width: size, height: size }} />;
+  return (
+    <div
+      onClick={() => lottieRef.current?.play()} // Reproduce al hacer clic
+      onMouseEnter={() => lottieRef.current?.play()} // Reproduce al pasar el mouse
+      onMouseLeave={() => lottieRef.current?.stop()} // Detiene al quitar el mouse (opcional)
+      style={{ cursor: "pointer", display: "inline-block" }}
+    >
+      <Lottie
+        lottieRef={lottieRef}
+        animationData={animationData}
+        loop={false} // Desactiva el bucle
+        autoplay={false} // Evita la autoanimación
+        style={{ width: size, height: size }}
+      />
+    </div>
+  );
 };
 
 export default AnimationIcons;
